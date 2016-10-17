@@ -1,3 +1,4 @@
+
 import random
 import time
 from socket import *
@@ -12,6 +13,7 @@ for i in range(1,10):
     message = "Hello Host!!!"
     clientSocket.sendto(message.encode(), UDP_Addr)
 
+#timeout
 #listener
 while True:
     reply, addr = clientSocket.recvfrom(1024)
