@@ -1,3 +1,6 @@
+
+# Charles Chen, Will Wu
+# 912054270, 912082297
 import random
 import time
 from socket import *
