@@ -9,6 +9,27 @@ SIM_TIME = 1000000
 Ts = 1
 NUM_HOSTS = 10;
 
+""" Hosts """           
+class Host:
+        def __init__(self, env, arrival_rate):
+                self.env = env
+                self.arrival_rate = arrival_rate
+                #reset to 0 when new packet come
+                self.N = 0
+                self.L = 0
+                self.S = 0
+                self.server = simpy.Resource(env, capacity = 1)
+                #let packets come in
+                env.process(self.packets_arrival(env))
+                
+        def process_packet(self, env):
+                self.L -= 1
+                #after transmition, a new packet will come to head
+                #reset to next slot
+                if (self.L > 0):
+                        self.N = 0
+                        self.S = math.floor(env.now) + 1
+
 class Ethernet:
         def __init__(self, env, arrival_rate):
             self.env = env
